@@ -1,10 +1,13 @@
 
 def password_symbol(password: str):
+    digit = False
     for char in password:
         if char.isdigit():
-            print(char, "-", "Цифра")
-        else:
-            print(char, "-", "Буква")
+            digit = True
+    if digit:
+        print("Есть цифра")
+    else:
+        print("Нет цифр")
 
 
 if __name__ == "__main__":
