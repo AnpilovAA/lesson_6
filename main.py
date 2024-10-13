@@ -1,67 +1,28 @@
+from urwid import Edit, Text, Pile, Filler, MainLoop, connect_signal
+
+
 def is_very_long(password: str) -> bool:
-    if len(password) < 12:
-        return False
-    else:
-        return True
+    return len(password) >= 12
 
 
 def has_digit(password: str) -> bool:
-    digit = False
-    for sign in password:
-        if sign.isdigit():
-            digit = True
-            break
-    if digit:
-        return digit
-    else:
-        return digit
+    return any(sign.isdigit() for sign in password)
 
 
 def has_letters(password: str) -> bool:
-    letter = False
-    for sign in password:
-        if sign.isalpha():
-            letter = True
-            break
-    if letter:
-        return letter
-    else:
-        return letter
+    return any(sign.isalpha() for sign in password)
 
 
 def has_upper_letters(password: str) -> bool:
-    upper_letter = False
-    for sing in password:
-        if sing.isupper():
-            upper_letter = True
-            break
-    if upper_letter:
-        return upper_letter
-    else:
-        return upper_letter
+    return any(sing.isupper() for sing in password)
 
 
 def has_lower_letters(password: str) -> bool:
-    lower_letter = False
-    for sing in password:
-        if sing.islower():
-            lower_letter = True
-            break
-    if lower_letter:
-        return lower_letter
-    else:
-        return lower_letter
+    return any(sing.islower() for sing in password)
+
 
 def has_symbols(password: str) -> bool:
-    symbol = False
-    for sign in password:
-        if not sign.isdigit() and not sign.isalpha():
-            symbol = True
-            break
-    if symbol:
-        return symbol
-    else:
-        return symbol
+    return any(not sign.isdigit() and not sign.isalpha() for sign in password)
 
 
 def password_rating(password: str) -> str:
@@ -79,11 +40,22 @@ def password_rating(password: str) -> str:
     for check_result in check_conditions:
         if check_result:
             scope += 2
-    
+
     return f"Рейтинг пароля: {scope}"
 
 
+def on_ask_change(edit, password):
+    reply.set_text(password_rating(password=password))
+
+
 if __name__ == "__main__":
-    # password = input("Введите пароль: ")
+    ask = Edit("Введите пароль: ", mask="*")
+    reply = Text("")
+    menu = Pile([ask, reply])
+    menu = Filler(menu, valign="top")
+    connect_signal(ask, "change", on_ask_change)
+    MainLoop(menu).run()
+
+    on_ask_change(ask, password_rating)
     password = "12dasc!gfW9112"
     print(password_rating(password=password))
