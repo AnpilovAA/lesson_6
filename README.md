@@ -1,4 +1,4 @@
-# Home work №5: Create Humans
+# Home work №6: Safe password checker
 
 
 In this project i made safe password checker. I use [[urwid ](https://urwid.org/tutorial/index.html)] library.
@@ -8,7 +8,7 @@ In this project i made safe password checker. I use [[urwid ](https://urwid.org/
 ## Installation guide
 
 ### First step clone this project
-- git clone https://github.com/AnpilovAA/lesson_4
+- git clone https://github.com/AnpilovAA/lesson_6
 
 ### Second step install virtual environment
 
