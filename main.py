@@ -57,5 +57,3 @@ if __name__ == "__main__":
     MainLoop(menu).run()
 
     on_ask_change(ask, password_rating)
-    password = "12dasc!gfW9112"
-    print(password_rating(password=password))
